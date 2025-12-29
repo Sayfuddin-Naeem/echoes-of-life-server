@@ -4,6 +4,10 @@ module.exports = (err, req, res, next) => {
   let error = { ...err };
   error.message = err.message;
 
+   if (!err.isOperational) {
+    error = new AppError("Something went wrong", 500);
+  }
+
   // Invalid MongoDB ID
   if (err.name === "CastError") {
     error = new AppError("Invalid ID format", 400);
@@ -23,6 +27,6 @@ module.exports = (err, req, res, next) => {
 
   res.status(error.statusCode || 500).json({
     success: false,
-    message: error.message || "Internal Server Error",
+    message: error.message,
   });
 };

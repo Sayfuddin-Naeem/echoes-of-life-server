@@ -3,6 +3,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const connectDB = require("./config/db");
+const errorHandler = require("./middlewares/errorHandler");
 // Routers
 
 
@@ -49,13 +50,7 @@ app.get("/", (req, res) => {
 });
 
 // Error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
-    success: false,
-    message: err.message || "Internal Server Error",
-  });
-});
+app.use(errorHandler);
 
 // DB connection and start the server
 const PORT = process.env.PORT || 3000;
