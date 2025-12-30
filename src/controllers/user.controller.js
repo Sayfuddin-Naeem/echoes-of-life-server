@@ -8,9 +8,7 @@ exports.createUser = async (req, res, next) => {
 
     res.status(created ? 201 : 200).json({
       success: true,
-      message: created
-        ? "User created successfully"
-        : "User already exists",
+      message: created ? "User created successfully" : "User already exists",
       user,
     });
   } catch (error) {
@@ -18,3 +16,19 @@ exports.createUser = async (req, res, next) => {
   }
 };
 
+// Get user by id
+exports.getUserById = async (req, res, next) => {
+  try {
+    const user = await userService.getUserByFirebaseUid(
+      req.params.id,
+      req.user
+    );
+
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
