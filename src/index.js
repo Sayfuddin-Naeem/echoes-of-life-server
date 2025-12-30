@@ -5,6 +5,7 @@ require("dotenv").config();
 const connectDB = require("./config/db");
 const errorHandler = require("./middlewares/errorHandler");
 // Routers
+const uploadRouter = require("./routes/upload.routes");
 
 
 const app = express();
@@ -41,7 +42,7 @@ connectDB();
 // app.use("/api/auth", authRouter);
 // app.use("/api/users", userRouter);
 // app.use("/api/comments", commentRouter);
-// app.use("/api/uploads", uploadRouter);
+app.use("/api/uploads", uploadRouter);
 // app.use("/api/favorites", favoriteRouter);
 // app.use("/api/hero-slides", heroSlideRouter);
 
