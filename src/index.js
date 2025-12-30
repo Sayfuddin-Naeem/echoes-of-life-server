@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middlewares/errorHandler");
 // Routers
 const uploadRouter = require("./routes/upload.routes");
-
+const userRouter = require("./routes/user.routes");
 
 const app = express();
 app.set("trust proxy", 1);
@@ -40,7 +40,7 @@ connectDB();
 
 // api routes
 // app.use("/api/auth", authRouter);
-// app.use("/api/users", userRouter);
+app.use("/api/users", userRouter);
 // app.use("/api/comments", commentRouter);
 app.use("/api/uploads", uploadRouter);
 // app.use("/api/favorites", favoriteRouter);
