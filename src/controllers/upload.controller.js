@@ -1,4 +1,3 @@
-const cloudinary = require("../config/cloudinary");
 const { uploadImageToCloudinary } = require("../services/cloudinary.service");
 const AppError = require("../utils/AppError");
 
