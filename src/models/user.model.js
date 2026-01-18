@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
     displayName: {
       type: String,
       trim: true,
+      required: true,
     },
 
     email: {
@@ -30,6 +31,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user",
+    },
+    isPremium: {
+      type: Boolean,
+      default: false,
     },
 
     stats: {
